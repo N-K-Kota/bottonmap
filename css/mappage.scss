@@ -1,0 +1,157 @@
+
+#mappage{
+  html{
+    color:red;
+  }                   //mappage専用CSS
+  #map {
+   position:absolute;
+   top:33px;
+   left:20%;
+   height: 90%;
+   width:80%;
+   box-shadow:0px 2px 6px 3px #939393;
+  }
+  #botton{
+   position:absolute;
+   left:0px;
+   top:30px;
+   width:20%;
+   height:90%;
+  }
+  #botton_top{
+   height:80%;
+   text-align: center;
+  }
+  #botton_bottom{
+   width:100%;
+   height:10%;
+   text-align:center;
+  }
+  #bottonbtn{
+    width:90px;
+    height:30px;
+    margin-top:10px;
+    background-color: #83a058;
+    color:white;
+    text-align:center;
+    border-color: transparent;
+    border-radius:0.5em;
+    box-shadow: 0px 2px 2px #354223;
+  }
+  #bottonbtn:active{
+   box-shadow:inset 0px 1px 1px #354223;
+  }
+  #bottonbtn:hover{
+   background-color:#698046;
+  }
+  .textarea{
+    height: 70px;
+    font-size:1em;
+  }
+  .btform{
+   display:inline-block;
+   margin-top:60px;
+  }
+  .exp{
+   display:inline-block;
+   color:#4169e1;
+   font-family: "katakana";
+   font-weight: bold;
+   border-bottom:solid 4px #4169e1;
+  }
+  .exp:hover{
+   color:blue;
+   border-bottom:solid 4px blue;
+  }
+  .exp:active{
+   color:white;
+   border-bottom:solid 4px white;
+
+  }
+  #alertmess{
+  color:red;
+  }
+
+  .hide{
+  display:none;
+  }
+  #mypagelist{
+  overflow: scroll;
+  width:100%;
+  height:90%;
+  }
+
+  .goodclass{
+    animation: pounding .5s linear infinite alternate;
+  }
+  .heart {
+  width:90px;
+  height:30px;
+  margin-top:30px;
+  border-color: #ee82ee;
+  color:#ee82ee;
+  border-radius:0.5em;
+}
+.heart:hover{
+  transform:scale(1.1);
+}
+@keyframes pounding{
+  0%{ transform: scale(1.3); }
+  100%{ transform: scale(1); }
+}
+.rireki{
+  list-style-type:decimal;
+  border-top:1px solid #b0c4de;
+  color:#2d5ae0;
+}
+.rireki:hover{
+  color:blue;
+}
+.rireki:active{
+  color:blue;
+}
+.searchbx{
+  height:25px;
+}
+.systembtn{
+  width:83px;
+  height:23px;
+  background:linear-gradient(180deg,#dcdcdc,white);
+  border:solid 1px #c0c0c0;
+}
+.systembtn:active{
+  background:linear-gradient(180deg,#a9a9a9,#dcdcdc);
+}
+@media screen and (max-width: 900px){
+  .systembtn{
+    margin-top:10px;
+  }
+}
+@media screen and (max-width:450px) {
+#bottonbtn{
+width:90%;
+height:30px;
+background-color: #83a058;
+color:white;
+text-align:center;
+border-color: transparent;
+box-shadow: 0px 2px 2px #354223;
+}
+#bottonbtn:active{
+box-shadow:inset 0px 1px 1px #354223;
+}
+#textarea{
+width:90%;
+height: 60px;
+}
+.heart{
+  width:90%;
+}
+.systembtn{
+  margin-top:10px;
+  width:90%;
+}
+}
+}
+
+/* Optional: Makes the sample page fill the window. */

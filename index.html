@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="./dist/vue.min.js"></script>
+    <title>ボットンマップ</title>
+    <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="dist/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124219222-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-124219222-1');
+</script>
+  </head>
+  <body>
+    <div id="container" >
+    <tab-compo v-bind:daimei="daimei" v-bind:mycoordinate="mycoordinate" :seen="seen"></tab-compo>
+    <toppage-compo v-if="topseen" v-on:loginevent="loginpage" ></toppage-compo>
+    <mappage-compo v-show="mapseen"  v-bind:clpoint="point" v-bind:database="database"  v-bind:myid="userid" v-bind:unkslist="myunks" :unkhash="unks" :mposi="mposition" v-bind:mapins="mymap"  ></mappage-compo>
+  </div>
+  <script type="text/x-template" id="modal-template">
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+<script src="./dist/app.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxnlq14E-m2r-eYzoFSRwpxf8uhlTNjkI&libraries=places&callback=initMap" async defer></script>
+
+</body>
+</html>

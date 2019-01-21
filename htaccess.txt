@@ -1,0 +1,14 @@
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^www\.bottonmap\.work
+RewriteRule ^(.*) http://bottonmap.work/$1 [R=301,L]
+
+RewriteEngine On
+
+RewriteCond %{THE_REQUEST} ^.*/bottonmap\.work
+RewriteRule ^(.*)index.html$ http://bottonmap.work/$1 [R=301,L]
+
+RewriteEngine on
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://bottonmap.work/$1 [R=301,L]

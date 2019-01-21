@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>ボットンマップ</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       @font-face{
+         font-family:"katakana";
+         src:url("./font/NaishoMoji-Regular.otf");
+       }
+
+      #map {
+        position:absolute;
+        top:33px;
+        left:20%;
+        height: 90%;
+        width:80%;
+        box-shadow:0px 2px 6px 3px #939393;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #botton{
+        position:absolute;
+        left:0px;
+        top:30px;
+        width:20%;
+        height:90%;
+      }
+      #botton_top{
+        height:80%;
+        text-align: center;
+      }
+      #botton_bottom{
+        width:100%;
+        height:20%;
+        text-align:center;
+      }
+      #bottonbtn{
+         width:90px;
+         height:30px;
+         margin-top:10px;
+         background-color: #83a058;
+         color:white;
+         text-align:center;
+         border-color: transparent;
+         border-radius:0.5em;
+         box-shadow: 0px 2px 2px #354223;
+      }
+      #bottonbtn:active{
+        box-shadow:inset 0px 1px 1px #354223;
+      }
+      #bottonbtn:hover{
+        background-color:#698046;
+      }
+      #message{
+         height: 70px;
+      }
+      .btform{
+        display:inline-block;
+        margin-top:60px;
+      }
+      #tabbar{
+        position:absolute;
+        top:0px;
+        left:0px;
+        width:100%;
+        height:30px;
+        border-bottom: solid 1px #939393;
+        box-shadow:0px 3px 6px 3px #939393;
+        color:#b5b5b5;
+        overflow: scroll;
+      }
+      .exp{
+        display:inline-block;
+        color:#4169e1;
+        font-family: "katakana";
+        font-weight: bold;
+        border-bottom:solid 4px #4169e1;
+      }
+      .exp:hover{
+        color:blue;
+        border-bottom:solid 4px blue;
+      }
+      .exp:active{
+        color:white;
+        border-bottom:solid 4px white;
+
+      }
+      .title{
+        margin-left: 20%;
+        color:#4d4d4d;
+        font-family: "katakana";
+      }
+
+      #flexcoord{
+        color:#4d4d4d;
+      }
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+  font-size:large;
+}
+
+.modal-body {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.modal-default-button {
+  width:50px;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.controls{
+  height:20px;
+}
+
+#alertmess{
+  color:red;
+}
+
+.hide{
+  display:none;
+}
+
+
+@media screen and (max-width:620px) {
+  #tabbar{
+    text-align:center;
+  }
+　 #flexcoord{
+  }
+}
+@media screen and (max-width:400px) {
+  #tabbar{
+    text-align:center;
+  }
+  #flexcoord{
+    position:absolute;
+    display:inline-block;
+    left:0px;
+    top:0px;
+    }
+    #bottonbtn{
+       width:74px;
+       height:30px;
+       background-color: #83a058;
+       color:white;
+       text-align:center;
+       border-color: transparent;
+       box-shadow: 0px 2px 2px #354223;
+    }
+    #bottonbtn:active{
+      box-shadow:inset 0px 1px 1px #354223;
+    }
+    #message{
+　　　　　　width:70px;
+       height: 70px;
+    }
+}
+.hide{
+  display:none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="container">
+    <div id="tabbar"><span  v-if="seen" class="title" id="sitetitle">{{ daimei }}</span>
+    　<span id="flexcoord">{{ mycoordinate }}</span>
+</div>
+    <div id="botton">
+  <div id="topelm" v-bind:style="{fontSize:postFontSize+'em'}">
+    <blog-post
+      v-for="post in posts"
+      v-bind:key="post.id"
+      v-bind:post="post"
+      v-on:largebtn = "hello"
+    ></blog-post>
+    <button>{{postFontSize}}</button>
+  </div>
+  </div>
+    　<div id="botton_top">
+       <span id="alertmess"></span>
+      <div class="btform" >
+        <textarea  cols="11" rows="3" maxlength="25" id="message"  placeholder="２5文字まで"></textarea><br>
+        <input type="button" value="ボットン" id="bottonbtn">
+      </div>
+    </div>
+  <div id="botton_bottom">
+   <div id="app">
+      <span id="show-modal" @click="showModal = true"　class="exp">トリセツ</span>
+       <modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">ボットンマップの遊び方</h3>
+      </modal>
+    </div>
+  </div>
+  </div>
+  <div id="rightside">
+  <div id="map" ></div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+  </div>
+  </div>
+  <script type="text/x-template" id="modal-template">
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <div class="modal-header">
+            <slot name="header">
+            </slot>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">
+              地図をクリックして座標を決めたら、ボットンを押してスッキリしましょう。
+              落としたうんちは７日間経つとなくなってしまいますよ。
+              うんちをクリックするとメッセージが見れます。
+              またダブルクリックでいいねもできますよ。
+            </slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              <button class="modal-default-button" @click="$emit('close')">
+                OK
+              </button>
+            </slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</script>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+<script src="./src/vue.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxnlq14E-m2r-eYzoFSRwpxf8uhlTNjkI&libraries=places&callback=initMap" async defer></script>
+<script src="./src/bottonmap.js?a=2"></script>
+
+</body>
+</html>
